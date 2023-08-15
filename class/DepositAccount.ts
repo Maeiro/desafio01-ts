@@ -1,6 +1,6 @@
 import { DioAccount } from "./DioAccount";
 
-export class CompanyAccount extends DioAccount {
+export class DepositAccount extends DioAccount {
   constructor(
     name: string,
     accountNumber: number,
@@ -10,18 +10,20 @@ export class CompanyAccount extends DioAccount {
     super(name, accountNumber, balance, status);
   }
 
-  getLoan = (amount: number) => {
+  deposit = (amount: number) => {
     if (!this.validateStatus()) {
       return;
     }
 
     if (amount <= 0) {
-      console.log("Valor inválido para empréstimo.");
+      console.log("Valor inválido para depósito.");
       return;
     }
-    this.changeBalance(amount);
-    console.log(`Você pegou um empréstimo no valor de: R$${amount}`);
 
+    this.changeBalance(amount + 10);
+    console.log(
+      `Depósito realizado com sucesso. Você depositou o valor de: R$${amount} + R$10 de bônus.`
+    );
     this.getBalance();
   };
 }
